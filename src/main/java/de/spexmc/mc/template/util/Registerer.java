@@ -64,7 +64,7 @@ public final class Registerer {
   }
 
   /*private static void registerCommands() {
-    final Reflections reflections = new Reflections("main.java.de.lara.mc.varo.commands");
+    final Reflections reflections = new Reflections("de.spexmc.mc.template.commands");
     for (Class<? extends CommandExecutor> commandClass : reflections.getSubTypesOf(CommandExecutor.class)) {
       final String name = commandClass.getSimpleName().toLowerCase();
       try {
@@ -76,7 +76,7 @@ public final class Registerer {
   }
 
   private static void registerEvents() {
-    final Reflections reflections = new Reflections("de.lara.mc.varo.listener");
+    final Reflections reflections = new Reflections("de.spexmc.mc.template.listener");
     for (Class<? extends Listener> listenerClass : reflections.getSubTypesOf(Listener.class)) {
       try {
         Bukkit.getPluginManager().registerEvents(listenerClass.newInstance(), Varo.getInstance());
