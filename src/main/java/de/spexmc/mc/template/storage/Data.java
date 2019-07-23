@@ -11,6 +11,7 @@ import de.spexmc.mc.template.io.sql.SQLManager;
  */
 public final class Data {
   private static Data instance;
+  private static boolean forceDisable;
 
   /**
    * Singleton-Muster: nur eine Instanz im gesamten Programm
@@ -20,9 +21,16 @@ public final class Data {
   public static Data getInstance() {
     if (instance == null) {
       instance = new Data();
-      instance.getSql().updateOnStart();
     }
     return instance;
+  }
+
+  public static boolean isForceDisable() {
+    return forceDisable;
+  }
+
+  public static void setForceDisable(boolean forceDisable) {
+    Data.forceDisable = forceDisable;
   }
 
   private final Map<UUID, String> cache;
@@ -31,6 +39,7 @@ public final class Data {
   private Data() {
     this.cache = new HashMap<>();
     this.sql = new SQLManager();
+    forceDisable = false;
   }
 
   //<editor-fold desc="getter and setter">

@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import de.spexmc.mc.template.Template;
+import de.spexmc.mc.template.storage.Data;
 import de.spexmc.mc.template.storage.Messages;
 
 /**
@@ -33,12 +34,21 @@ public final class FileManager {
 
     } catch (FileNotFoundException ex) {
       logger.log(Level.SEVERE, Messages.MYSQL_DATA_NOT_SET);
+      Data.setForceDisable(true);
       Template.getInstance().onDisable();
 
     } catch (IOException ex) {
       logger.log(Level.SEVERE, ex.getMessage());
     }
     return null;
+  }
+
+  public static String get(File file, String key) {
+    return loadConfig(file).get(key);
+  }
+
+  public static File getDataFolder() {
+    return new File("plugins" + File.separator + "config");
   }
 
   public static void writeIntoConfig(File file, Map<String, String> toWrite) {

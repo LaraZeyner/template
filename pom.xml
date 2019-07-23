@@ -6,7 +6,7 @@
 
     <groupId>de.spexmc.mc</groupId>
     <artifactId>template</artifactId>
-    <version>1.4.3-SNAPSHOT</version>
+    <version>1.4.6-SNAPSHOT</version>
 
     <packaging>jar</packaging>
 
@@ -18,8 +18,9 @@
 
 
     <build>
-        <finalName>Template-1.4.3</finalName>
+        <finalName>Template-1.4.6</finalName>
         <sourceDirectory>src/main/java</sourceDirectory>
+
         <resources>
             <resource>
                 <targetPath>.</targetPath>
@@ -30,6 +31,7 @@
                 </includes>
             </resource>
         </resources>
+
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -38,6 +40,7 @@
                     <target>8</target>
                 </configuration>
             </plugin>
+
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
                 <executions>
@@ -49,6 +52,7 @@
                         </goals>
                         <configuration>
                             <outputDirectory>out/testserver/</outputDirectory>
+                            <overwrite>false</overwrite>
                             <resources>
                                 <resource>
                                     <directory>${basedir}/src/main/resources/defaultServerFiles</directory>
@@ -57,6 +61,7 @@
                             </resources>
                         </configuration>
                     </execution>
+
                     <execution>
                         <id>copy-config</id>
                         <phase>validate</phase>
@@ -65,16 +70,22 @@
                         </goals>
                         <configuration>
                             <outputDirectory>out/testserver/plugins/config</outputDirectory>
+                            <overwrite>false</overwrite>
+                            <includeEmptyDirs>true</includeEmptyDirs>
                             <resources>
                                 <resource>
                                     <directory>${basedir}/src/main/resources/config</directory>
                                     <filtering>true</filtering>
+                                    <excludes>
+                                        <exclude>**/.keep</exclude>
+                                    </excludes>
                                 </resource>
                             </resources>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
+
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
@@ -103,6 +114,11 @@
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
 
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+
     </repositories>
 
 
@@ -120,7 +136,6 @@
             <version>0.9.10</version>
             <scope>compile</scope>
         </dependency>
-
 
     </dependencies>
 

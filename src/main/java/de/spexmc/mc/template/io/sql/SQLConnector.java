@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import de.spexmc.mc.template.Template;
 import de.spexmc.mc.template.io.FileManager;
 import de.spexmc.mc.template.storage.Const;
+import de.spexmc.mc.template.storage.Data;
 import de.spexmc.mc.template.storage.Messages;
 
 /**
@@ -38,6 +39,7 @@ public class SQLConnector {
       this.connection = DriverManager.getConnection(sqlData.getUrl(), sqlData.getUsername(), sqlData.getPassword());
     } catch (ClassNotFoundException | SQLException ex) {
       getLogger().log(Level.SEVERE, Messages.MYSQL_CONNECTION_FAILED, ex);
+      Data.setForceDisable(true);
       Template.getInstance().onDisable();
     }
     return connection;
@@ -51,10 +53,12 @@ public class SQLConnector {
 
       } catch (SQLException ex) {
         logger.log(Level.SEVERE, Messages.MYSQL_CONNECTION_FAILED, ex);
+        Data.setForceDisable(true);
         Template.getInstance().onDisable();
       }
     } else {
       getLogger().log(Level.SEVERE, Messages.MYSQL_CONNECTION_FAILED);
+      Data.setForceDisable(true);
       Template.getInstance().onDisable();
     }
   }

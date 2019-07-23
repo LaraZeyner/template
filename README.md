@@ -10,6 +10,7 @@ Dieses Projekt dient dazu, um leichter Minecraft-Plugins schreiben zu können. D
 7. Wenn du nicht Minecraft-1.8.8 nutzen willst, änder dies in der pom.xml.
 8. Zum Testen erstelle den Maven-Befehl: ``clean package``
 9. Führe die Datei ``out/testserver/start.bat`` aus.
+10. Die Remote Funktion kannst du über Port ``5005`` mit den Argumenten ``-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005`` nutzen.
 <br>
 Zum Aktualisieren des Plugins führe ``clean package`` erneut aus und reloade den Server.
 
