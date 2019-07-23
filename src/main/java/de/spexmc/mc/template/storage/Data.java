@@ -20,7 +20,6 @@ public final class Data {
   public static Data getInstance() {
     if (instance == null) {
       instance = new Data();
-      instance.getSql().updateOnStart();
     }
     return instance;
   }

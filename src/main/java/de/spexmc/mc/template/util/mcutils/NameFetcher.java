@@ -1,14 +1,12 @@
 package de.spexmc.mc.template.util.mcutils;
 
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
-import java.nio.charset.Charset;
 import java.util.UUID;
 
+import de.spexmc.mc.template.io.IOUtils;
 import de.spexmc.mc.template.storage.Messages;
 import de.spexmc.mc.template.util.Messenger;
 import org.json.simple.JSONArray;
@@ -20,7 +18,6 @@ import org.json.simple.parser.ParseException;
  * Created by Lara on 31.05.2019 for template
  */
 final class NameFetcher {
-
   /**
    * @param playerName The name of the player
    * @return The UUID of the given player
@@ -34,8 +31,8 @@ final class NameFetcher {
         return UUID.fromString(uuidObject.get("id").toString());
       }
 
-    } catch (ParseException e) {
-      e.printStackTrace();
+    } catch (ParseException ex) {
+      Messenger.administratorMessage(ex.getMessage());
     }
 
     return null;
@@ -53,8 +50,8 @@ final class NameFetcher {
       final String playerSlot = nameValue.get(nameValue.size() - 1).toString();
       final JSONObject nameObject = (JSONObject) JSONValue.parseWithException(playerSlot);
       return nameObject.get("name").toString();
-    } catch (ParseException e) {
-      e.printStackTrace();
+    } catch (ParseException ex) {
+      Messenger.administratorMessage(ex.getMessage());
     }
     return "error";
   }
@@ -65,7 +62,7 @@ final class NameFetcher {
       final URL url = new URL(urlString);
       final URLConnection connection = url.openConnection();
       connection.setReadTimeout(60 * 1000);
-      readURL(builder, connection);
+      IOUtils.readURL(builder, connection);
 
     } catch (FileNotFoundException ignored) {
       if (urlString.startsWith("https://api.mojang.com/")) {
@@ -79,15 +76,4 @@ final class NameFetcher {
     return builder.toString();
   }
 
-  private static void readURL(StringBuilder builder, URLConnection connection) throws IOException {
-    if (connection != null && connection.getInputStream() != null) {
-      try (final InputStreamReader streamReader = new InputStreamReader(connection.getInputStream(), Charset.defaultCharset());
-           final BufferedReader bufferedReader = new BufferedReader(streamReader)) {
-        int cp;
-        while ((cp = bufferedReader.read()) != -1) {
-          builder.append((char) cp);
-        }
-      }
-    }
-  }
 }

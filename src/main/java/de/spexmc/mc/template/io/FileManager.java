@@ -41,6 +41,14 @@ public final class FileManager {
     return null;
   }
 
+  public static String get(File file, String key) {
+    return loadConfig(file).get(key);
+  }
+
+  public static File getDataFolder() {
+    return new File("plugins" + File.separator + "config");
+  }
+
   public static void writeIntoConfig(File file, Map<String, String> toWrite) {
     try (final FileOutputStream fileOutputStream = new FileOutputStream(file)) {
       final Properties properties = collectProperties(toWrite);

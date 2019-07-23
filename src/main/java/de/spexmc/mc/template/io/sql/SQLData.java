@@ -5,7 +5,7 @@ import java.sql.Connection;
 import de.spexmc.mc.template.storage.Data;
 
 /**
- * Created by Lara on 13.01.2019 for minigames
+ * Created by Lara on 13.01.2019 for template
  */
 class SQLData {
   private final String password, url, username;

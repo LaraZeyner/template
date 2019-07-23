@@ -83,4 +83,15 @@ public final class UUIDUtils {
     return player;
   }
 
+  /**
+   * Bestimme den Spieler, mithilfe der UUID, mit dem sich der gesuchte Spieler
+   * zuletzt verbunden hat.
+   *
+   * @param playerName letzer bekannter Name des Spielers
+   * @return org.bukkit.entity.Player des Spielers
+   */
+  public static Player getPlayer(String playerName) {
+    return getPlayer(getUUID(playerName));
+  }
+
 }

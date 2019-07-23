@@ -46,8 +46,7 @@ public final class Registerer {
   private static void registerEvents() {
     // Insert Events here
     final List<Listener> listeners = Arrays.asList(new TestEvent());
-
-    for (final Listener listener : listeners) {
+    for (Listener listener : listeners) {
       Bukkit.getPluginManager().registerEvents(listener, Template.getInstance());
     }
   }
@@ -55,8 +54,7 @@ public final class Registerer {
   private static void registerCommands() {
     // Insert Commands here
     final List<CommandExecutor> commands = Arrays.asList(new TestCommand());
-
-    for (final CommandExecutor commandExecutor : commands) {
+    for (CommandExecutor commandExecutor : commands) {
       final Class<? extends CommandExecutor> commandExecutorClass = commandExecutor.getClass();
       final String commandName = commandExecutorClass.getSimpleName().toLowerCase();
       Template.getInstance().getCommand(commandName).setExecutor(commandExecutor);
