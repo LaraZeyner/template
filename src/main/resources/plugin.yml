@@ -1,7 +1,7 @@
-name: Template
-version: 1.4.6
-authors: [SpexMC-Entwicklerteam]
+name: ${build.finalName}
+version: ${version}
+authors: [${author}]
 
-main: de.spexmc.mc.template.Template
+main: ${mainClass}
 commands:
   testcommand:

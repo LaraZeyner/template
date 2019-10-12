@@ -12,10 +12,15 @@
 
     <developers>
         <developer>
-            <name>Abgie (Lara)</name>
+            <name>Lara</name>
         </developer>
     </developers>
 
+    <properties>
+        <author>SpexMC-Entwicklerteam</author> <!-- Change for Autor -->
+        <mainClass>net.mmm.mc.template.Template</mainClass> <!-- Change for Main Class -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
     <build>
         <finalName>Template-1.4.6</finalName>
@@ -129,14 +134,21 @@
             <version>1.8.8-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
-
+        <!-- https://mvnrepository.com/artifact/org.javassist/javassist -->
         <dependency>
-            <groupId>org.reflections</groupId>
-            <artifactId>reflections</artifactId>
-            <version>0.9.10</version>
-            <scope>compile</scope>
+            <groupId>org.javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>3.25.0-GA</version>
         </dependency>
 
+        <!--
+                <dependency>
+                    <groupId>org.reflections</groupId>
+                    <artifactId>reflections</artifactId>
+                    <version>0.9.10</version>
+                    <scope>compile</scope>
+                </dependency>
+        -->
     </dependencies>
 
 
